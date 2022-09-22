@@ -1,6 +1,6 @@
 # Encrypt / Decrypt
 
-A small app that encrypts and decrypts text using a [simple algorithm found on Stack Overflow:](https://stackoverflow.com/a/54026460/7853201)
+A small app that encrypts and decrypts text using a [simple algorithm found on Stack Overflow.](https://stackoverflow.com/a/66938952/7853201)
 
 See it live here: https://decrypt-survey-mails-lol.netlify.app/
 
