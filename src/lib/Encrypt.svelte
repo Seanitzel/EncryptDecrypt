@@ -1,12 +1,21 @@
 <script>
-  import { encrypt, decrypt } from "../helpers/helpers";
+  import {
+    encrypt,
+    decrypt,
+    encryptBatch,
+    decryptBatch,
+  } from "../helpers/helpers";
 
   let key = "";
   let text = "";
+  let batch = "";
 
   let isDecryptMode = true;
 
   $: result = isDecryptMode ? decrypt(key, text) : encrypt(key, text);
+  $: batchResult = isDecryptMode
+    ? decryptBatch(key, batch.split("\n"))
+    : encryptBatch(key, batch.split("\n"));
 </script>
 
 <div>
@@ -24,13 +33,33 @@
 
     <label for="text">Text</label>
     <input type="text" id="text" bind:value={text} />
+    <div class="batch">
+      <label for="batch">Batch</label>
+      <textarea type="text" id="text" bind:value={batch} />
+    </div>
 
-    <p>Result: {result}</p> 
+    <p>Result: {result}</p>
+    <p>Batch result:</p>
+    {#if batchResult.length}
+      {#each batchResult as email}
+        <li>{email}</li>
+      {/each}
+    {/if}
   </div>
 </div>
 
 <style>
   input {
     font-size: 24px;
+  }
+
+  .batch {
+    padding: 24px 0;
+  }
+
+  textarea {
+    font-size: 24px;
+    width: 100%;
+    height: 200px;
   }
 </style>

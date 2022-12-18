@@ -25,3 +25,17 @@ export const decrypt = (salt, encoded) => {
     .map((charCode) => String.fromCharCode(charCode))
     .join('');
 };
+
+export const encryptBatch = (salt, arr) => {
+  if (typeof salt !== 'string' || !Array.isArray(arr)) {
+    throw new Error('encryptBatch: salt must be a string and arr must be an array');
+  }
+  return arr.map((item) => encrypt(salt, item));
+}
+
+export const decryptBatch = (salt, arr) => {
+  if (typeof salt !== 'string' || !Array.isArray(arr)) {
+    throw new Error('decryptBatch: salt must be a string and arr must be an array');
+  }
+  return arr.map((item) => decrypt(salt, item));
+}
